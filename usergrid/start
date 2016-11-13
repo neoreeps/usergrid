@@ -44,11 +44,11 @@ fi
 if [ -z "${APP_NAME}" ]; then
     APP_NAME=app
 fi
-if [ -z "${TOMCAT_RAM}" ]; then
-    TOMCAT_RAM=512m
+if [ -z "${TOMCAT_MEM}" ]; then
+    TOMCAT_MEM=512m
 fi
 
-echo "--> usergrid configuration:  CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}  USERGRID_CLUSTER_NAME=${USERGRID_CLUSTER_NAME}  ADMIN_USER=${ADMIN_USER}  ORG_NAME=${ORG_NAME}  APP_NAME=${APP_NAME}  TOMCAT_RAM=${TOMCAT_RAM}"
+echo "--> usergrid configuration:  CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}  USERGRID_CLUSTER_NAME=${USERGRID_CLUSTER_NAME}  ADMIN_USER=${ADMIN_USER}  ORG_NAME=${ORG_NAME}  APP_NAME=${APP_NAME}  TOMCAT_MEM=${TOMCAT_MEM}"
 
 
 # start usergrid
@@ -73,7 +73,7 @@ sed -i "s/#elasticsearch.queue_impl=LOCAL/elasticsearch.queue_impl=LOCAL/g" $USE
 sed -i "s/#cassandra.version=1.2/cassandra.version=2.1/g" $USERGRID_PROPERTIES_FILE
 
 # update tomcat's java options
-sed -i "s#\"-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC\"#\"-Djava.awt.headless=true -XX:+UseConcMarkSweepGC -Xmx${TOMCAT_RAM} -Xms${TOMCAT_RAM} -verbose:gc\"#g" /etc/default/tomcat7
+sed -i "s#\"-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC\"#\"-Djava.awt.headless=true -XX:+UseConcMarkSweepGC -Xmx${TOMCAT_MEM} -Xms${TOMCAT_MEM} -verbose:gc\"#g" /etc/default/tomcat7
 
 echo "--> start usergrid"
 service tomcat7 start

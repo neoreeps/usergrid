@@ -32,6 +32,7 @@ if [ -z "${CASSANDRA_BROADCAST_RPC_ADDRESS}" ] ; then
     CASSANDRA_BROADCAST_RPC_ADDRESS=$(hostname --ip-address)
 fi
 
+
 CONFIG_FILE=/etc/cassandra/cassandra.yaml
 
 sed -i -e "s/cluster_name: 'Test Cluster'/cluster_name: '${CASSANDRA_CLUSTER_NAME}'/" ${CONFIG_FILE}
@@ -39,5 +40,10 @@ sed -i -e "s/^\(listen_address:\).*/\1 ${CASSANDRA_LISTEN_ADDRESS}/" ${CONFIG_FI
 sed -i -e "s/^\(rpc_address:\).*/\1 ${CASSANDRA_RPC_ADDRESS}/" ${CONFIG_FILE}
 sed -i -e "s/^\(# \)\(broadcast_rpc_address:\).*/\2 ${CASSANDRA_BROADCAST_RPC_ADDRESS}/" ${CONFIG_FILE}
 sed -i -e "s/^\([ ]*- seeds:\).*/\1 ${CASSANDRA_SEEDS}/" ${CONFIG_FILE}
+
+# fixup start thrift RPC server
+if [ -n "${CASSANDRA_START_RPC}" ]; then
+    sed -i -e "s/start_rpc: false/start_rpc: ${CASSANDRA_START_RPC}/" ${CONFIG_FILE}
+fi
 
 start-stop-daemon --chuid cassandra:cassandra --exec /usr/sbin/cassandra --start -- -f
