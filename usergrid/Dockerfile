@@ -40,7 +40,8 @@ RUN echo "--> install tomcat and packages required for compilation" \
 EXPOSE 8080 8443
 
 # runtime configuration script: since this is updated frequently during development, add it last
-COPY start.sh /start.sh
+COPY start /start
+RUN chmod 755 /start
 
 # default command when starting container with "docker run"
-CMD /start.sh
+CMD /start

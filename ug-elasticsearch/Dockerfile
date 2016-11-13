@@ -22,5 +22,9 @@ EXPOSE 9300
 # config
 ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml 
 
+# change user
+RUN useradd -ms /bin/bash esadmin
+USER esadmin
+
 # default command
 CMD ["/elasticsearch/bin/elasticsearch"]

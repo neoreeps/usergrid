@@ -25,5 +25,7 @@ EXPOSE 80
 
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/conf.d", "/var/log/nginx"]
 
-COPY start.sh /start.sh
-CMD /start.sh
+COPY start /start
+RUN chmod 755 /start
+
+CMD /start

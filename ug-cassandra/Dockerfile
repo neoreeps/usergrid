@@ -24,7 +24,8 @@ VOLUME ["/var/lib/cassandra", "/var/log/cassandra"]
 #  9160 cassandra thrift interface (legacy)
 EXPOSE 9042 9160
 
-COPY start.sh /start.sh 
+COPY start /start 
+RUN chmod 755 /start
 
 # set default command when starting container with "docker run"
-CMD /start.sh
+CMD /start
