@@ -70,7 +70,7 @@ sed -i "s/#elasticsearch.hosts=127.0.0.1/elasticsearch.hosts=${ELASTICSEARCH_POR
 sed -i "s/#elasticsearch.port=9300/elasticsearch.port=${ELASTICSEARCH_PORT_9300_TCP_PORT}/g" $USERGRID_PROPERTIES_FILE
 sed -i "s/#usergrid.use.default.queue=false/usergrid.use.default.queue=true/g" $USERGRID_PROPERTIES_FILE
 sed -i "s/#elasticsearch.queue_impl=LOCAL/elasticsearch.queue_impl=LOCAL/g" $USERGRID_PROPERTIES_FILE
-sed -i "s/#cassandra.version=1.2/cassandra.version=2.1/g" $USERGRID_PROPERTIES_FILE
+sed -i "s/#cassandra.version=1.2/cassandra.version=2.2.8/g" $USERGRID_PROPERTIES_FILE
 
 # update tomcat's java options
 sed -i "s#\"-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC\"#\"-Djava.awt.headless=true -XX:+UseConcMarkSweepGC -Xmx${TOMCAT_MEM} -Xms${TOMCAT_MEM} -verbose:gc\"#g" /etc/default/tomcat7
