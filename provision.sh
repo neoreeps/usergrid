@@ -11,7 +11,7 @@ dprint() {
 }
 
 dprint "stop running docker containers"
-docker stop $(docker ps --quiet)
+docker stop cassandra elasticsearch usergrid portal
 
 dprint "remove existing container images"
 docker rm -f usergrid cassandra elasticsearch portal

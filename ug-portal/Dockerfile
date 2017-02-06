@@ -7,7 +7,7 @@ RUN apt-get update \
     && rm -rf /var/www/html/* \
     && echo "--> build usergrid portal" \
     && apt-get install -y npm git-core nodejs-legacy phantomjs \
-    && git clone --single-branch --branch master --depth 1 \
+    && git clone --single-branch --branch 2.1.0 --depth 1 \
         https://github.com/apache/usergrid.git /root/usergrid \
     && cd /root/usergrid/portal \
     && npm install -g grunt-cli \

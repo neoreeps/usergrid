@@ -1,6 +1,6 @@
 FROM neoreeps/ug-java
 
-ENV ES_PKG_NAME elasticsearch-2.4.1
+ENV ES_PKG_NAME elasticsearch-1.7.3
 
 # install elasticsearch
 RUN \
